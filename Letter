@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Letter</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffe6f2;
+            text-align: center;
+            margin: 0;
+        }
+        .heart {
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+            position: relative;
+            transform: rotate(-45deg);
+            animation: heartbeat 1s infinite;
+            cursor: pointer;
+        }
+        .heart::before, .heart::after {
+            content: "";
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+            border-radius: 50%;
+            position: absolute;
+        }
+        .heart::before {
+            top: -50px;
+            left: 0;
+        }
+        .heart::after {
+            left: 50px;
+            top: 0;
+        }
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1) rotate(-45deg); }
+            50% { transform: scale(1.1) rotate(-45deg); }
+        }
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+            max-width: 80%;
+            text-align: left;
+            overflow-y: auto;
+            max-height: 80vh;
+        }
+        .popup button {
+            display: block;
+            margin: 20px auto 0;
+            padding: 10px 20px;
+            border: none;
+            background: pink;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="heart" onclick="showLetter()"></div>
+    <div class="popup" id="loveLetter">
+        <p>Hey [namanya],</p>
+        <p>You ever wonder how two people can feel so connected even when they don’t see each other often? ...</p>
+        <p>Take care, okay? You’re special, and I hope you never forget that.</p>
+        <p>- Me.</p>
+        <button onclick="hideLetter()">Close</button>
+    </div>
+    <script>
+        function showLetter() {
+            let popup = document.getElementById('loveLetter');
+            popup.style.display = 'block';
+            let popSound = new Audio('https://www.fesliyanstudios.com/play-mp3/4382');
+            popSound.play();
+        }
+        function hideLetter() {
+            document.getElementById('loveLetter').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
